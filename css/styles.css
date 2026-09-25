@@ -1,0 +1,315 @@
+/* Simple, clean, readable — matched to happy-wheels-levelxml. */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  color: #222;
+  font: 14px/1.5 Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.page {
+  width: min(640px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.5rem 0 2.5rem;
+}
+
+.disclaimer {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font-size: 11px;
+  color: #888;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.logo {
+  display: block;
+  width: min(360px, 85vw);
+  height: auto;
+  margin: 0 auto 0.5rem;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.sub {
+  margin: 0.25rem 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.intro {
+  margin: 0 0 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.intro-alt {
+  margin: -0.5rem 0 1rem;
+  text-align: center;
+  font-size: 12px;
+}
+
+.intro-alt a {
+  color: #333;
+}
+
+.box {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.notes h2 {
+  margin: 0 0 0.5rem;
+  font-size: 14px;
+}
+
+.notes h2:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.notes p {
+  margin: 0 0 0.65rem;
+}
+
+.notes p:last-child {
+  margin-bottom: 0;
+}
+
+.muted {
+  color: #777;
+  font-size: 12px;
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.92em;
+  background: #eee;
+  padding: 0.05em 0.3em;
+  border: 1px solid #ddd;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.actions {
+  margin-top: 0.25rem;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+}
+
+.filter__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+}
+
+.filter select {
+  font: inherit;
+  font-size: 13px;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #999;
+  background: #fff;
+  color: #111;
+  width: 100%;
+}
+
+@media (max-width: 520px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid #888;
+  background: #eee;
+  color: #111;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover:not(:disabled) {
+  background: #e2e2e2;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.btn-primary {
+  background: #222;
+  border-color: #111;
+  color: #fff;
+  font-size: 14px;
+  padding: 0.7rem 1.4rem;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #000;
+}
+
+.btn-sm {
+  font-size: 11px;
+  padding: 0.3rem 0.65rem;
+}
+
+.pick {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.pick__label {
+  margin: 0 0 0.35rem;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pick__id {
+  margin: 0;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 0.02em;
+}
+
+.pick__meta {
+  margin: 0.35rem 0 0;
+  font-size: 12px;
+  color: #666;
+  word-break: break-all;
+}
+
+.pick__meta a {
+  color: #222;
+}
+
+.pick__actions {
+  margin-top: 0.65rem;
+}
+
+.status {
+  min-height: 1.2em;
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status--ok {
+  color: #1a7a32;
+}
+
+.status--warn {
+  color: #8a5a00;
+}
+
+.status--busy {
+  color: #666;
+}
+
+.advanced {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+}
+
+.advanced summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: #666;
+  user-select: none;
+}
+
+.advanced__body {
+  margin-top: 0.65rem;
+}
+
+.advanced label {
+  display: block;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 0.25rem;
+}
+
+.advanced input {
+  font: 14px Consolas, "Courier New", monospace;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #999;
+  width: min(220px, 100%);
+  text-align: center;
+}
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+.copy {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.footer a {
+  color: #666;
+}
+
+.noscript {
+  border-color: #b00020;
+  color: #b00020;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

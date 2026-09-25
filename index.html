@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Wheels Random Level (Steam)</title>
+  <meta name="description" content="Open a random Happy Wheels level instantly in the Steam game. Picks from a refreshed pool of known working levels." />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="justprogrammingstuff" />
+  <meta name="theme-color" content="#f5f5f5" />
+  <meta name="color-scheme" content="light" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Happy Wheels Random Level" />
+  <meta property="og:title" content="Happy Wheels Random Level (Steam)" />
+  <meta property="og:description" content="Click a button to open a random Happy Wheels level in the Steam game — no dead IDs." />
+  <meta property="og:locale" content="en_US" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Happy Wheels Random Level (Steam)" />
+  <meta name="twitter:description" content="Click a button to open a random Happy Wheels level in the Steam game — no dead IDs." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23222'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='16' fill='%23f5f5f5' font-family='Verdana'%3ER%3C/text%3E%3C/svg%3E" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-mode="steam">
+  <main class="page">
+    <p class="disclaimer">Unofficial fan tool - not affiliated with Totaljerkface, Happy Wheels, or Steam.</p>
+
+    <header class="header">
+      <img class="logo" src="assets/logo.png" alt="Happy Wheels logo" width="360" height="170" />
+      <h1>Happy Wheels Random Level</h1>
+      <p class="sub">One click → random level in Steam</p>
+    </header>
+
+    <p class="intro">
+      Picks a random <em>known working</em> level and launches
+      <a href="https://store.steampowered.com/app/4705510/Happy_Wheels/" rel="noopener noreferrer">Happy Wheels on Steam</a>.
+      Steam must be installed.
+    </p>
+    <p class="intro-alt muted">
+      Don’t have Happy Wheels on Steam?
+      <a href="web.html">Try the random level web version</a>.
+    </p>
+
+    <noscript>
+      <div class="box noscript">
+        JavaScript needs to be enabled for this page to work.
+      </div>
+    </noscript>
+
+    <section class="box" aria-label="Random level">
+      <p id="pool-meta" class="muted" style="text-align:center;margin:0 0 0.75rem">Loading level pool…</p>
+
+      <div class="filters" role="group" aria-label="Level filters">
+        <label class="filter">
+          <span class="filter__label">Uploaded</span>
+          <select id="filter-uploaded">
+            <option value="anytime" selected>Anytime</option>
+            <option value="today">Today</option>
+            <option value="week">Past week</option>
+            <option value="month">Past month</option>
+            <option value="year">Past year</option>
+          </select>
+        </label>
+        <label class="filter">
+          <span class="filter__label">Play count</span>
+          <select id="filter-plays">
+            <option value="any" selected>Any</option>
+            <option value="lt:100">Less than 100</option>
+            <option value="lt:1000">Less than 1,000</option>
+            <option value="lt:10000">Less than 10,000</option>
+            <option value="lt:1000000">Less than 1,000,000</option>
+            <option value="gte:100">100+</option>
+            <option value="gte:1000">1,000+</option>
+            <option value="gte:10000">10,000+</option>
+            <option value="gte:100000">100,000+</option>
+            <option value="gte:1000000">1,000,000+</option>
+          </select>
+        </label>
+      </div>
+      <p id="match-meta" class="muted" style="text-align:center;margin:0.5rem 0 0.75rem"></p>
+
+      <div class="row actions">
+        <button type="button" class="btn btn-primary" id="random-btn" disabled>Random Level (Steam)</button>
+      </div>
+
+      <div id="pick" class="pick" hidden>
+        <p class="pick__label">Level ID</p>
+        <p class="pick__id" id="level-id">—</p>
+        <p class="pick__meta" id="level-info"></p>
+        <p class="pick__meta" id="level-url"></p>
+        <div class="row pick__actions">
+          <a class="btn btn-primary" id="open-primary" href="#">Open in Steam</a>
+          <a class="btn" id="open-alt" href="#" target="_blank" rel="noopener noreferrer">Open in browser</a>
+          <button type="button" class="btn" id="copy-btn">Copy Steam link</button>
+          <button type="button" class="btn" id="again-btn">Try another</button>
+        </div>
+      </div>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="box notes">
+      <h2>How this works</h2>
+      <p>
+        A GitHub Action periodically pulls live levels from Totaljerkface
+        (newest / most-played / top-rated) and saves them into
+        <code>data/levels.json</code> on this repo — including publish date and play count.
+        Filters narrow that pool in your browser; the button only rolls from matches,
+        so you shouldn’t hit deleted IDs.
+      </p>
+      <p>
+        Opening a pick uses Steam’s launch param:
+        <code>steam://run/4705510//?level_id=…</code>
+      </p>
+      <p class="muted">
+        Your browser may ask permission the first time — allow it.
+        Prefer playing in the browser instead?
+        <a href="web.html">Use the web version</a>.
+        The pool isn’t every level ever made — it’s a large snapshot of levels that existed
+        when it was last refreshed.
+      </p>
+      <h2>Also</h2>
+      <p class="muted">
+        Need LevelXML from a Steam offline download?
+        <a href="https://justprogrammingstuff.github.io/happy-wheels-levelxml/" rel="noopener noreferrer">Happy Wheels LevelXML Converter</a>
+      </p>
+      <p class="muted">
+        Want old iOS campaign / community levels as PC LevelXML?
+        <a href="https://justprogrammingstuff.github.io/happy-wheels-mobile-levelxml/" rel="noopener noreferrer">Happy Wheels iOS Levels for PC</a>
+      </p>
+    </section>
+
+    <footer class="footer">
+      <p class="copy">Idea credit: jay_hogl on Discord</p>
+      <p class="copy">Unofficial fan tool · Happy Wheels © its owners · please don't sue me</p>
+    </footer>
+  </main>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
